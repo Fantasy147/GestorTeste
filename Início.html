@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+    <head>
+        <meta charset="UTF-8">
+        <title>GestorTech</title>
+        <link rel="stylesheet" href="Formato.css">  
+        <script src="Forma.js"></script>
+    </head>
+    <body>
+        <div class="topbar">
+            <div class="topbar-left">
+                <a href="https://www.esbocage.com/" class="logo-link">
+                    <img src="logo.webp" alt="Logo">
+                </a>
+            </div>
+            <div class="topbar-right">
+                <nav>
+                    <div class="fundo">
+                        <button class="botao-fechar" onclick="fecharEntrada()">×</button>
+
+            <div id="entrar_conteudo" class="conteudo_login">
+                <h4>Entrar</h4>
+                <input type="text" placeholder="Utilizador">
+                <input type="password" placeholder="Palavra-passe">
+                <button onclick="iniciarSessao()">Entrar</button>
+                <p><a href="#" onclick="mostrarRegisto()">Não tem conta? Registe-se</a></p>
+                <p><a href="#" onclick="mostrarEsqueciSenha()">Esqueceu a Palavra-passe</a></p>
+            </div>
+                    </div>  
+                    <a href="Notificações">
+                        <img src="notificacoes.png" alt="Notificações" class="notification-icon">
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <div class="sidebar">
+            <nav>
+            <h2 class="sidebar-title">GestorTech</h2>
+            <ul>
+                <li><a href="Início.html">Sobre nos</a></li>
+                <li><a href="Histórico.html">Histórico</a></li>
+                <li><a href="Avariados.html">Avariados</a></li>
+                <li><a href="Abatidos.html">Abatidos</a></li>
+                <li><a href="Definições.html">Definições</a></li>
+            </ul>
+            </nav>
+        </div>
+        <main>
+            <div class="geral">
+                <h1>Bem-vindo ao GestorTech</h1>
+                <p>O GestorTech é um site que facilita a gestão dos computadores da Escola 
+                    Secundária du Bocage, ajudando a controlar de maneira eficiente o 
+                    estado dos equipamentos, avarias e requisições e possibilitando gerar 
+                    relatórios detalhados.</p>
+                <h2>Principais funcionalidades:</h2>
+                <P class = "lista">Monitorização de equipamentos;</P>
+                <P class = "lista">Gestão de requisições e avarias;</P>
+                <P class = "lista">Elaboração de relatórios técnicos.</P>
+            </div>
+            
+            <br>
+            <div class="geral">
+                <h2>Como funciona?</h2>
+                <video class="video_manual" controls>
+                    <source src="video_teste.mp4" width = "320" height = "240" type = "video/mp4">
+                    Seu navegador não suporta a tag do vídeo.
+                    <a href="video_teste.mp4" width="360" height="220" controls>Baixar vídeo</a>
+                </video>
+                <br>
+            </div>
+            <div class="contatos">
+                <div class="contatos_divisão">
+                    <div class="contatos_esquerda">
+                        <h3>Entre em contato conosco</h3>
+                        <h4>Telefone</h4>
+                        <ul>
+                            <li class="lista"><a href="tel:123456789">+351 123-456-789</a></li>
+                            <li class="lista"><a href="tel:987654321">+351 987-654-321</a></li>
+                        </ul>
+                        <h4>Email</h4>
+                        <ul>
+                            <li><a href="mailto:direcao@esbocage.com">direcao@esbocage.com</a></li>
+                            <li><a href="mailto:apoio.tecnico@esbocage.com">apoio.tecnico@esbocage.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="divisor"></div>
+                    <div class="contatos_direita">
+                        <h4>Formulário de contato</h4>
+                        <form action="Início.html" method="post">
+                            <div class = "nome_msg">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" name="nome_utt" required placeholder="Digite seu nome"><br>
+                            </div>
+                            <div class = "sobrenome_msg">
+                                <label for="surname">Sobrenome</label>
+                                <input type="text" id="surname" name="surname" required placeholder="Digite seu sobrenome"><br>
+                            </div>
+                            <div class = "tipo_msg">
+                                <label for="type">Tipo de mensagem</label>
+                                <select id="type" name="type" required>
+                                    <option value="dúvida">Dúvida</option>
+                                    <option value="sugestão">Sugestão</option>
+                                    <option value="reclamação">Reclamação</option>
+                                    <option value="elogio">Elogio</option>
+                                    <option value="outro">Outro</option>
+                                </select><br>
+                            </div>
+                            <div class = "prioridade_msg">
+                                <label for="priority">Prioridade</label>
+                                <select id="priority" name="priority" required>
+                                    <option value="alta">Alta</option>
+                                    <option value="média">Média</option>
+                                    <option value="baixa">Baixa</option>
+                                </select><br>
+                            </div>
+                            <div class = "email_msg">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="Digite seu email"><br>
+                            </div>
+                            <div class = "assunto_msg">
+                                <label for="subject">Assunto</label>
+                                <input type="text" id="subject" name="subject" required placeholder="Digite o assunto"><br>
+                                <textarea name="mensagem" id="mensagem" rows="5" cols="30" placeholder="Digite aqui..."></textarea>
+                            </div>
+                            <button class = "enviar_msg" type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>     
+        </main>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-content">
+                    <p>&copy; 2023 GestorTech. Todos os direitos reservados.</p>
+                    <p>Desenvolvido por: ESBOCAGE</p>
+                </div>
+                <div class="media-links">
+                    <a href="https://www.facebook.com/escolasecundariadubocageoficial/">
+                        <img src="facebook.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/esbocage/">
+                        <img src="Instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.youtube.com/@ESduBocage">
+                        <img src="Youtube.png" alt="YouTube">
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html> 

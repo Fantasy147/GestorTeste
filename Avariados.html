@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+    <head>
+        <meta charset="UTF-8">
+        <title>GestorTech</title>
+        <link rel="stylesheet" href="Formato.css">   
+        <script src="Forma.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>     
+    </head>
+    <body>
+        <div class="topbar">
+            <div class="topbar-left">
+                <a href="https://www.esbocage.com/" class="logo-link">
+                    <img src="logo.webp" alt="Logo">
+                </a>
+            </div>
+            <div class="topbar-right">
+                <nav>
+                    <div class="fundo">
+                        <button onclick="abrirJanela()">Entrar</button>
+                        <div id="janela" style="display:none;">
+                            <button class ="entrar_btn" id="fechar" onclick="fecharJanela()">Fechar</button>
+                            <iframe src="Entrar.html"></iframe>
+                        </div>
+                    </div>  
+                    <a href="Notificações">
+                        <img src="notificacoes.png" alt="Notificações" class="notification-icon">
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <div class="sidebar">
+            <nav>
+            <h2 class="sidebar-title">GestorTech</h2>
+            <ul>
+               <li><a href="Início.html">Sobre nos</a></li>
+               <li><a href="Histórico.html">Histórico</a></li>
+               <li><a href="Avariados.html">Avariados</a></li>
+               <li><a href="Abatidos.html">Abatidos</a></li>
+               <li><a href="Definições.html">Definições</a></li>
+            </ul>
+            </nav>
+        </div>
+        <main>
+            <div class="geral">
+                <label for="pesquisar">Pesquisar:</label>
+                <input type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar..." onkeyup="filtrarTabela()">
+                <select name="filtrar" id="filtrar"></select>
+                <select>
+                    <option value="Avariados">Avariados</option>
+                    <option value="Abatidos">Abatidos</option>
+                    <option value="Todos">Todos</option>
+                </select>
+
+                <script>
+                    // Função para filtrar a tabela com base na pesquisa e no filtro do select
+                    // Adiciona um evento de mudança ao select
+
+                    document.getElementById('filtrar').addEventListener('change', function() {
+                        var filtro = this.value;
+                        var tabela = document.querySelector('.tabela_geral tbody');
+                        var linhas = tabela.querySelectorAll('tr');
+
+                        linhas.forEach(function(linha) {
+                            var estado = linha.cells[1].textContent;
+                            if (filtro === 'Todos' || estado === filtro) {
+                                linha.style.display = '';
+                            } else {
+                                linha.style.display = 'none';
+                            }
+                        });
+                    });
+
+                </script>
+                
+                <h1>Lista de Equipamentos Avariados</h1>
+                <table class="tabela_geral">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Estado</th>
+                        <th>Data de Avaria</th>
+                        <th>Data de Reparação</th>
+                        <th>Observações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Computador 1</td>
+                        <td>Avariado</td>
+                        <td>2023-10-01</td>
+                        <td>2023-10-15</td>
+                        <td>Nenhuma</td>
+                    </tr>
+                    <tr>
+                        <td>Computador 2</td>
+                        <td>Avariado</td>
+                        <td>2023-10-05</td>
+                        <td>2023-10-20</td>
+                        <td>Nenhuma</td>
+                    </tr>
+                    <tr>
+                        <td>Computador 3</td>
+                        <td>Avariado</td>
+                        <td>2023-10-10</td>
+                        <td>2023-10-25</td>
+                        <td>Nenhuma</td>
+                    </tr>
+                </table>
+                
+            </div>
+        </main>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-content">
+                    <p>&copy; 2023 GestorTech. Todos os direitos reservados.</p>
+                    <p>Desenvolvido por: ESBOCAGE</p>
+                </div>
+                <div class="media-links">
+                    <a href="https://www.facebook.com/escolasecundariadubocageoficial/">
+                        <img src="facebook.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/esbocage/">
+                        <img src="Instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.youtube.com/@ESduBocage">
+                        <img src="Youtube.png" alt="YouTube">
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html> 

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico</title>
+    <link rel="stylesheet" href="Formato.css">
+    <script src="Forma.js"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar-left">
+            <a href="https://www.esbocage.com/" class="logo-link">
+                <img src="logo.webp" alt="Logo">
+            </a>
+        </div>
+        <div class="topbar-right">
+            <nav>
+                <div class="fundo">
+                    <button onclick="abrirJanela()">Entrar</button>
+                    <div id="janela" style="display:none;">
+                        <button class ="entrar_btn" id="fechar" onclick="fecharJanela()">Fechar</button>
+                        <iframe src="Entrar.html"></iframe>
+                    </div>
+                </div>  
+                <a href="Notificações">
+                    <img src="notificacoes.png" alt="Notificações" class="notification-icon">
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <nav>
+            <h2 class="sidebar-title">GestorTech</h2>
+            <ul>
+                <li><a href="Início.html">Sobre nos</a></li>
+                <li><a href="Histórico.html">Histórico</a></li>
+                <li><a href="Avariados.html">Avariados</a></li>
+                <li><a href="Abatidos.html">Abatidos</a></li>
+                <li><a href="Definições.html">Definições</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <div class="geral">
+            <h1>Histórico</h1>
+            <h2>Histórico de Abates e Avarias</h2>
+            <!-- Script para filtrar com caixas de texto e selects e sem botao-->
+
+            <div class="filtro">
+                <label for="filtro_nome">Nome:</label>
+                <input type="text" id="filtro_nome" placeholder="Filtrar por nome, descrição, motivo ou responsável...">
+                
+                <label for="filtro-estado">Estado:</label>
+                <select id="filtro-estado">
+                    <option value="">Todos</option>
+                    <option value="Avariado">Avariado</option>
+                    <option value="Abatido">Abatido</option>
+                </select>
+
+                <label for="filtro_registos">Data de registo:</label>
+                <input type="date" id="filtro_registo">
+
+                
+
+
+
+                <script>
+
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const filtroNome = document.getElementById("filtro_nome");
+                        const filtroEstado = document.getElementById("filtro-estado");
+                        const filtroRegisto = document.getElementById("filtro_registo");
+                        const tabela = document.querySelector(".tabela_geral tbody");
+
+                        filtroNome.addEventListener("input", filtrarTabela);
+                        filtroEstado.addEventListener("change", filtrarTabela);
+                        filtroRegisto.addEventListener("change", filtrarTabela);
+
+                        function filtrarTabela() {
+                            const nomeValor = filtroNome.value.toLowerCase();
+                            const estadoValor = filtroEstado.value;
+                            const registoValor = filtroRegisto.value;
+
+                            Array.from(tabela.rows).forEach(row => {
+                                const nomeTexto = row.cells[0].textContent.toLowerCase();
+                                const estadoTexto = row.cells[1].textContent;
+                                const registoTexto = row.cells[2].textContent;
+
+                                const nomeMatch = nomeTexto.includes(nomeValor);
+                                const estadoMatch = estadoValor === "" || estadoTexto === estadoValor;
+                                const registoMatch = registoValor === "" || registoTexto === registoValor;
+
+                                if (nomeMatch && estadoMatch && registoMatch) {
+                                    row.style.display = "";
+                                } else {
+                                    row.style.display = "none";
+                                }
+                            });
+                        }
+                    });
+
+                    //Função para abrir a janela com os valores clicados 3 vezes na tabela
+                    let lastClickedRow = null;
+                    let clickCount = 0;
+                    let clickTimer = null;
+
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const rows = document.querySelectorAll(".tabela_geral tbody tr");
+
+                        rows.forEach(row => {
+                            row.addEventListener("click", function() {
+                                if (lastClickedRow === row) {
+                                    clickCount++;
+                                } else {
+                                    clickCount = 1;
+                                    lastClickedRow = row;
+                                }
+
+                                clearTimeout(clickTimer);
+                                clickTimer = setTimeout(() => {
+                                    clickCount = 0;
+                                    lastClickedRow = null;
+                                }, 1000); // 1 second to reset
+
+                                if (clickCount === 3) {
+                                    alert("Janela aberta para: " + row.cells[0].textContent);
+                                    clickCount = 0;
+                                    lastClickedRow = null;
+                                }
+                            });
+                        });
+                    });
+                    
+                </script>
+
+
+            </div>
+            <table id ="tabela_id" class="tabela_geral">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Estado</th> 
+                        <th>Data de registo</th>
+                        <th>Tipo de registo</th>
+                        <th>Descrição</th>
+                        <th>Data abate/avaria</th>
+                        <th>Data de reparação</th>
+                        <th>Motivo do abate</th>
+                        <th>Nome do técnico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Computador 1</td>
+                        <td>Abatido</td>
+                        <td>2023-01-15</td>
+                        <td>Requisição</td>
+                        <td>Computador com falha de hardware</td>
+                        <td>2023-01-20</td>
+                        <td>2023-02-05</td>
+                        <td>Dano irreparável</td>
+                        <td>Técnico A</td>
+                    </tr>
+                    <tr>
+                        <td>Computador 2</td>
+                        <td>Avariado</td>
+                        <td>2023-02-20</td>
+                        <td>Requisição</td>
+                        <td>Problema de desempenho</td>
+                        <td>2023-03-01</td>
+                        <td>2023-03-15</td>
+                        <td></td>
+                        <td>Técnico B</td>
+                    </tr>
+                    <tr>
+                        <td>Computador 3</td>
+                        <td>Abatido</td>
+                        <td>2023-03-10</td>
+                        <td>Requisição</td>
+                        <td>Obsoleto</td>
+                        <td>2023-03-20</td>
+                        <td>Ruptura de componentes</td>
+                        <td>Desatualização de hardware</td>
+                        <td>Técnico C</td>
+                    </tr>
+                    <tr>
+                        <td>Computador 4</td>
+                        <td>Avariado</td>
+                        <td>2023-04-05</td>
+                        <td>Requisição</td>
+                        <td>Problemas de desempenho</td>
+                        <td>2023-04-10</td>
+                        <td>2023-04-20</td>
+                        <td></td>
+                        <td>Técnico D</td>
+                    </tr>
+                    <tr>
+                        <td>Computador 5</td>
+                        <td>Abatido</td>
+                        <td>2023-05-12</td>
+                        <td>Requisição</td>
+                        <td>Falha de hardware</td>
+                        <td>2023-05-15</td>
+                        <td>2023-06-01</td>
+                        <td>Dano irreparável</td>
+                        <td>Técnico E</td>
+                    </tr>
+                    <tr>
+                        <td>Computador 6</td>
+                        <td>Avariado</td>
+                        <td>2023-06-18</td>
+                        <td>Requisição</td>
+                        <td>Desgaste físico</td>
+                        <td>2023-06-25</td>
+                        <td>2023-07-05</td>
+                        <td></td>
+                        <td>Técnico F</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div id="tabelaInfo">
+        <div id="tab_geral">
+            <span id="closeBtn">&times;</span>
+            <h3>Informações da tabela</h3>
+            <div id="tabDetalhes"></div>
+        </div>
+    </div>
+    <style>
+        #tabelaInfo {
+            display: none;
+            position: fixed;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+            
+        #tab_geral {
+            background: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+        }
+        #closeBtn {
+            float: right;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        const tabela = document.getElementById('tabela_id');
+        const tabelaInfo = document.getElementById('tabelaInfo');
+        const tabDetalhes = document.getElementById('tabDetalhes');
+        const closeBtn = document.getElementById('closeBtn');
+
+        tabela.addEventListener('dblclick', function(e) {
+            let target = e.target;
+            
+            while (target && target.nodeName !== 'TR') {
+                target = target.parentNode;
+            }
+            if (target && target.nodeName === 'TR') {
+                const cells = target.children;
+                let info = '<ul>';
+                for (let i = 0; i < cells.length; i++) {
+                    const header = tabela.rows[0].cells[i].textContent;
+                    info += `<li><strong>${header}:</strong> ${cells[i].textContent}</li>`;
+                }
+                tabDetalhes.innerHTML = info;
+                tabelaInfo.style.display = 'block';
+            }
+        });
+
+        closeBtn.onclick = function() {
+            tabelaInfo.style.display = 'none';
+        };
+
+        window.onclick = function(event) {
+            if (event.target == tabelaInfo) {
+                tabelaInfo.style.display = 'none';
+            }
+        };
+
+    </script>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>&copy; 2023 GestorTech. Todos os direitos reservados.</p>
+                <p>Desenvolvido por: ESBOCAGE</p>
+            </div>
+            <div class="media-links">
+                <a href="https://www.facebook.com/escolasecundariadubocageoficial/">
+                    <img src="facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/esbocage/">
+                    <img src="Instagram.png" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/@ESduBocage">
+                    <img src="Youtube.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
